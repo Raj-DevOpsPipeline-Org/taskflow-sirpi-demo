@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow - Simple Task Management</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Auth Section -->
+    <div id="auth-section">
+      <div class="auth-card">
+        <h1>🚀 TaskFlow</h1>
+        <p class="subtitle">Simple Task Management</p>
+        
+        <div id="login-form">
+          <h2>Login</h2>
+          <input type="email" id="login-email" placeholder="Email" required>
+          <input type="password" id="login-password" placeholder="Password" required>
+          <button onclick="login()">Login</button>
+          <p class="switch-auth">Don't have an account? <a href="#" onclick="showRegister(); return false;">Register</a></p>
+        </div>
+
+        <div id="register-form" style="display: none;">
+          <h2>Register</h2>
+          <input type="text" id="register-name" placeholder="Full Name" required>
+          <input type="email" id="register-email" placeholder="Email" required>
+          <input type="password" id="register-password" placeholder="Password (min 6 chars)" required>
+          <button onclick="register()">Register</button>
+          <p class="switch-auth">Already have an account? <a href="#" onclick="showLogin(); return false;">Login</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main App Section -->
+    <div id="app-section" style="display: none;">
+      <header>
+        <div>
+          <h1>🚀 TaskFlow</h1>
+          <span id="user-name" class="user-name"></span>
+        </div>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+      </header>
+
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-label">Total Tasks</div>
+          <div class="stat-value" id="stat-total">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Pending</div>
+          <div class="stat-value" id="stat-pending">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">In Progress</div>
+          <div class="stat-value" id="stat-progress">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Completed</div>
+          <div class="stat-value" id="stat-completed">0</div>
+        </div>
+      </div>
+
+      <div class="add-task">
+        <input type="text" id="new-task-title" placeholder="What needs to be done?" maxlength="200">
+        <select id="new-task-priority">
+          <option value="low">Low Priority</option>
+          <option value="medium" selected>Medium Priority</option>
+          <option value="high">High Priority</option>
+        </select>
+        <button onclick="createTask()">Add Task</button>
+      </div>
+
+      <div class="filters">
+        <button class="filter-btn active" onclick="filterTasks('all')">All</button>
+        <button class="filter-btn" onclick="filterTasks('pending')">Pending</button>
+        <button class="filter-btn" onclick="filterTasks('in_progress')">In Progress</button>
+        <button class="filter-btn" onclick="filterTasks('completed')">Completed</button>
+      </div>
+
+      <div id="tasks-list"></div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
